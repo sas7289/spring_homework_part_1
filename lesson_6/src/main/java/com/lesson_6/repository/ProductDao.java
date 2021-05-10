@@ -41,8 +41,4 @@ public class ProductDao {
     public Product saveOrUpdate(Product product) {
         return (Product) HibernateUtil.doInTransaction(factory, session -> session.merge(product));
     }
-
-    public List<Shopper> getShoppersByProductId(Long id) {
-        return HibernateUtil.doInTransaction(factory, session -> session.createQuery("select s from Shopper s").getResultList());
-    }
 }

@@ -40,9 +40,4 @@ public class ShopperDao {
         return (Shopper) HibernateUtil.doInTransaction(factory, session -> session.merge(shopper));
     }
 
-    public List<Shopper> getShoppersByProductId(Long id) {
-        return HibernateUtil.doInTransaction(factory, session ->
-                session.createQuery("select s from Shopper s", Shopper.class).getResultList());
-    }
-
 }

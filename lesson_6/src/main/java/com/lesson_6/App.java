@@ -17,7 +17,6 @@ public class App {
         Product product = productDao.findById(2L);
         ShopperDao shopperDao = context.getBean(ShopperDao.class);
         Shopper shopper = shopperDao.findById(1L);
-        List<?> temp = shopperDao.getShoppersByProductId(1L);
     }
 }
 //Со всеми этими праздниками запутался в датах сдачи заданий поэтому ко времени успел только это,
