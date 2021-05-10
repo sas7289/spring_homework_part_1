@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "shoppers")
@@ -17,4 +18,12 @@ public class Shopper {
 
     @Column(name = "name")
     String name;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "products_shoppers",
+            joinColumns = @JoinColumn(name = "shopper_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    List<Product> products;
 }
