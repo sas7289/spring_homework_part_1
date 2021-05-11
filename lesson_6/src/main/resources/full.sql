@@ -24,4 +24,15 @@ INSERT INTO products_shoppers (product_id, shopper_id) VALUES
 (2, 3),
 (3, 3);
 
+DROP TABLE IF EXISTS purchase_history CASCADE;
+CREATE TABLE purchase_history (id bigserial PRIMARY KEY, shopper_id bigint references shoppers(id),
+ product_id bigint references products(id), cost bigint);
+INSERT INTO purchase_history (shopper_id, product_id, cost) VALUES
+(1, 1, 30),
+(2, 1, 30),
+(3, 1, 30),
+(1, 2, 65),
+(3, 2, 65),
+(3, 3, 460);
+
 COMMIT;

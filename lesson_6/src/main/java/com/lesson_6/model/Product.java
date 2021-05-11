@@ -1,6 +1,5 @@
 package com.lesson_6.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-@Data
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +27,10 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "shopper_id")
     )
     List<Shopper> shoppers;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    List<PurchaseHistory> purchaseHistoryList;
+
+
+
 }

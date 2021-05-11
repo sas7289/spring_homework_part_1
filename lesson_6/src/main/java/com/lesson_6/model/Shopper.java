@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "shoppers")
-@Data
 @NoArgsConstructor
 public class Shopper {
     @Id
@@ -26,4 +25,7 @@ public class Shopper {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     List<Product> products;
+
+    @OneToMany(mappedBy = "shopper", fetch = FetchType.EAGER)
+    List<PurchaseHistory> purchaseHistoryList;
 }
