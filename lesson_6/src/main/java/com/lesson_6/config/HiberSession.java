@@ -12,9 +12,7 @@ public class HiberSession {
     @Bean
     public org.hibernate.cfg.Configuration config() {
         return new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Product.class)
-                .addAnnotatedClass(Shopper.class);
+                .configure("hibernate.cfg.xml");
     }
 
     @Bean
