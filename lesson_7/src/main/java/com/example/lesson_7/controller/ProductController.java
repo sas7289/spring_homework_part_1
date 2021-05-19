@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     //Протестировать с помощью постмана
-    @PostMapping
+    @PostMapping("save")
     public Product saveProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
