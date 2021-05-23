@@ -19,7 +19,7 @@ public class ProductController {
     public Product findById(@PathVariable(name = "id") Long id) {
         return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
-
+ 
     @GetMapping
     public List<Product> findAll() {
         return productRepository.findAll();
