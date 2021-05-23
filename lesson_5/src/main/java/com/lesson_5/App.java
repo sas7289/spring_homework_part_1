@@ -7,7 +7,7 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        Product product = new Product(10L, "Shark", 65);
+        Product product = new Product(null, "coffee", 380);
         ProductDao.saveOrUpdate(product);
         ProductDao.deleteById(2L);
         Product productTwo = ProductDao.findById(2L);
