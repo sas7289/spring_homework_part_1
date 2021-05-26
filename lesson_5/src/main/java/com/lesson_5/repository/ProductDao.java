@@ -2,6 +2,7 @@ package com.lesson_5.repository;
 
 
 import com.lesson_5.model.Product;
+import com.lesson_6.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
