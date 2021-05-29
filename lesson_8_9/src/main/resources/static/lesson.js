@@ -17,8 +17,28 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         })
             .then(function (response) {
                 $scope.ProductsPage = response.data;
+
+                let minPageIndex = pageIndex - 2;
+                if (minPageIndex < 1) {
+                    minPageIndex = 1;
+                }
+
+                let maxPageIndex = pageIndex + 2;
+                if (maxPageIndex > $scope.ProductsPage.totalPages) {
+                    maxPageIndex = $scope.ProductsPage.totalPages;
+                }
+
+                $scope.PaginationArray = $scope.generatePageIndex(minPageIndex, maxPageIndex);
             });
     };
+
+    $scope.generatePageIndex = function (minPageIndex, maxPageIndex) {
+        let arr = [];
+        for (let i = minPageIndex; i < maxPageIndex + 1; i++) {
+            arr.push(i);
+        }
+        return arr;
+    }
 
     $scope.saveProduct = function () {
         console.log($scope.newProduct);
@@ -31,11 +51,11 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     };
 
 
-    $scope.deleteProduct = function (productToDelete) {
-        console.log(productToDelete);
-        $http.post(contextPath + '/delete', productToDelete)
+    $scope.deleteProduct = function (productIdToDelete) {
+        console.log(productIdToDelete);
+        $http.delete(contextPath + '/' + productIdToDelete)
             .then(function (resp) {
-                $scope.fillTable();
+                $scope.fillTable($scope.ProductsPage.number + 1);
             })
 
     }

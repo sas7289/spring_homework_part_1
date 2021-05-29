@@ -29,7 +29,7 @@
                 <td>{{p.title}}</td>
                 <td>{{p.cost}}</td>
                 <td>
-                    <button class="btn btn-warning" type="submit" ng-click="deleteProduct(p)">Remove</button>
+                    <button class="btn btn-warning" type="submit" ng-click="deleteProduct(p.id)">Remove</button>
                 </td>
             </div>
         </tr>
@@ -40,20 +40,15 @@
             <li ng-class="ProductsPage.first ? disablePrev = true : disablePrev = false">
                 <button ng-disabled="disablePrev" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number)">Prev</button>
             </li>
-<!--            ng-repeat pageIndex in PaginationArray"-->
-            <li ng-class="ProductsPage.number == pageIndex-1 ? 'page-item active' : 'page-item'">
-                <button class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number+1)">{{ProductsPage.number+1}}</button>
+            <li ng-class="ProductsPage.number == pageIndex-1 ? disableCurrent = true : disableCurrent = false" ng-repeat = "pageIndex in PaginationArray">
+                <button ng-disabled="disableCurrent" class="btn btn-success" type="submit" ng-click="fillTable(pageIndex)">{{pageIndex}}</button>
             </li>
-            <li ng-class="ProductsPage.last ? disableNext =true : disableNext = false">
+            <li ng-class="ProductsPage.last ? disableNext = true : disableNext = false">
                 <button ng-disabled="disableNext" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number+2)">Next</button>
             </li>
         </ul>
     </nav>
 
-<!--    <div form-group row>-->
-<!--        <button class="btn btn-success" type="submit" ng-click="prevPage()">Prev</button>-->
-<!--        <button class="btn btn-success" type="submit" ng-click="nextPage()">Next</button>-->
-<!--    </div>-->
 
     <hr color="green">
 
