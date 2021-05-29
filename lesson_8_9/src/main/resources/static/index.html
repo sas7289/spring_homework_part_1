@@ -24,7 +24,7 @@
             <td>Cost</td>
         </tr>
         </thead>
-        <tr ng-repeat="p in ProductList">
+        <tr ng-repeat="p in ProductsPage.content">
             <div>
                 <td>{{p.title}}</td>
                 <td>{{p.cost}}</td>
@@ -35,11 +35,25 @@
         </tr>
     </table>
 
+    <nav aria-label="Page-navigation">
+        <ul class="pagination">
+            <li ng-class="ProductsPage.first ? disablePrev = true : disablePrev = false">
+                <button ng-disabled="disablePrev" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number)">Prev</button>
+            </li>
+<!--            ng-repeat pageIndex in PaginationArray"-->
+            <li ng-class="ProductsPage.number == pageIndex-1 ? 'page-item active' : 'page-item'">
+                <button class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number+1)">{{ProductsPage.number+1}}</button>
+            </li>
+            <li ng-class="ProductsPage.last ? disableNext =true : disableNext = false">
+                <button ng-disabled="disableNext" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number+2)">Next</button>
+            </li>
+        </ul>
+    </nav>
 
-    <div form-group row>
-        <button class="btn btn-success" type="submit" ng-click="prevPage()">Prev</button>
-        <button class="btn btn-success" type="submit" ng-click="nextPage()">Next</button>
-    </div>
+<!--    <div form-group row>-->
+<!--        <button class="btn btn-success" type="submit" ng-click="prevPage()">Prev</button>-->
+<!--        <button class="btn btn-success" type="submit" ng-click="nextPage()">Next</button>-->
+<!--    </div>-->
 
     <hr color="green">
 
