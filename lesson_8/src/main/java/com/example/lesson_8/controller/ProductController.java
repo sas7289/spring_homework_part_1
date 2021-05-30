@@ -1,5 +1,6 @@
 package com.example.lesson_8.controller;
 
+import com.example.lesson_8.dto.ProductDto;
 import com.example.lesson_8.model.Product;
 import com.example.lesson_8.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,11 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public Page<Product> findAll(@RequestParam Map<String, String> params,
+    public Page<ProductDto> findAll(@RequestParam Map<String, String> params,
                                  @RequestParam(name = "pageNumber", defaultValue = "1") Integer pageNumber,
                                  @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
-        return productService.findAll(params, pageNumber, pageSize);
+        Page<ProductDto> page = productService.findAll(params, pageNumber, pageSize);
+        return page;
     }
 
     @GetMapping("/{id}")
@@ -31,14 +33,14 @@ public class ProductController {
     }
 
     @PutMapping
-    public Product updateProduct(@RequestParam Product product) {
-        return productService.saveProduct(product);
+    public Product updateProduct(@RequestParam ProductDto productDto) {
+        return productService.saveProduct(productDto);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody Product product) {
-        productService.saveProduct(product);
+    public void createProduct(@RequestBody ProductDto productDto) {
+        productService.saveProduct(productDto);
     }
 
     @DeleteMapping("/{id}")

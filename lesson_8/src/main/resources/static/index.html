@@ -81,6 +81,14 @@
             <input class="form-control" type="number" ng-model="newProduct.cost" id="cost">
         </div>
         </div>
+        <div class="form-group col-md-6">
+            <label for="selectCategory">Категории</label>
+            <select class="form-control" id="selectCategory">
+                <option ng-repeat="cat in Categories">
+                    {{cat.name}}
+                </option>
+            </select>
+        </div>
         <div>
             <button class="btn btn-success" type="submit">Добавить</button>
         </div>

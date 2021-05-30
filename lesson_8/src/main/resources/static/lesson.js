@@ -30,6 +30,14 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
 
                 $scope.PaginationArray = $scope.generatePageIndex(minPageIndex, maxPageIndex);
             });
+        $http.get(contextPath + '/categories')
+            // $http({
+            //     url: contextPath + '/categories',
+            //     method: 'GET'
+            // })
+            .then(function (response) {
+                $scope.Categories = response.data;
+            });
     };
 
     $scope.generatePageIndex = function (minPageIndex, maxPageIndex) {
@@ -58,6 +66,17 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.fillTable($scope.ProductsPage.number + 1);
             })
 
+    }
+
+    $scope.selectCategory = function () {
+        $http.get(contextPath + '/categories')
+        // $http({
+        //     url: contextPath + '/categories',
+        //     method: 'GET'
+        // })
+            .then(function (response) {
+                $scope.Categories = response.data;
+            });
     }
 
     // $scope.nextPage = function () {
