@@ -1,5 +1,6 @@
 package com.example.lesson_8.controller;
 
+import com.example.lesson_8.dto.CategoryDto;
 import com.example.lesson_8.dto.ProductDto;
 import com.example.lesson_8.model.Product;
 import com.example.lesson_8.service.ProductService;
@@ -48,27 +49,4 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-//    @GetMapping("/prev")
-//    public List<Product> prevPage(@RequestParam Map<String, String> params) {
-//        if(!productPages.hasPrevious()) {
-//            return productService.findAll(params, productPages.getPageable()).getContent();
-//        }
-//        productPages = productService.findAll(params, productPages.previousOrFirstPageable());
-//        return productPages.getContent();
-//    }
-//
-//    @GetMapping("/next")
-//    public List<Product> nextPage(@RequestParam Map<String, String> params) {
-//        if(!productPages.hasNext()) {
-//            return productService.findAll(params, productPages.getPageable()).getContent();
-//        }
-//        productPages = productService.findAll(params, productPages.nextPageable());
-//        return productPages.getContent();
-//    }
-
-
-//    @PostMapping("/delete")
-//    public void deleteProduct(@RequestBody Product product) {
-//        productService.delete(product);
-//    }
 }

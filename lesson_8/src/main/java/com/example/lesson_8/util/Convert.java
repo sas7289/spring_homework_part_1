@@ -7,7 +7,7 @@ import com.example.lesson_8.model.Product;
 
 public class Convert {
     public static Category dtoToCategory(CategoryDto dto) {
-        return new Category(dto.getId(), dto.getName());
+        return new Category(dto.getId(), dto.getName().trim());
     }
 
     public static CategoryDto categoryToDto(Category category) {
@@ -15,11 +15,12 @@ public class Convert {
     }
 
     public static Product dtoToProduct(ProductDto dto) {
-        return new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(null, dto.getCategory()));
+        Product product = new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(dto.getCategory().getId(), dto.getCategory().getName()));
+        return product;
     }
 
     public static ProductDto productToDto(Product product) {
-        return new ProductDto(product.getId(), product.getTitle(), product.getCost(), product.getCategory().getName());
+        return new ProductDto(product.getId(), product.getTitle(), product.getCost(), new CategoryDto(product.getCategory().getId(), product.getCategory().getName()));
     }
     
 }
