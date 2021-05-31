@@ -15,12 +15,12 @@ public class Convert {
     }
 
     public static Product dtoToProduct(ProductDto dto) {
-        Product product = new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(dto.getCategory().getId(), dto.getCategory().getName()));
+        Product product = new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(dto.getCategoryId(), null));
         return product;
     }
 
     public static ProductDto productToDto(Product product) {
-        return new ProductDto(product.getId(), product.getTitle(), product.getCost(), new CategoryDto(product.getCategory().getId(), product.getCategory().getName()));
+        return new ProductDto(product.getId(), product.getTitle(), product.getCost(), product.getCategory().getId());
     }
     
 }

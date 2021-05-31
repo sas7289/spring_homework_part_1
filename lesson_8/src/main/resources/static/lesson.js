@@ -49,11 +49,6 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     }
 
     $scope.saveProduct = function () {
-        // $http({
-        //     url: contextPath + '/save',
-        //     method: 'POST',
-        //     data: $scope.newProduct.category =
-        // })
         console.log($scope.newProduct);
         $http.post(contextPath + '/save', $scope.newProduct)
             .then(function (response) {

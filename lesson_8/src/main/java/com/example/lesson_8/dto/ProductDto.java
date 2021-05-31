@@ -18,5 +18,5 @@ public class ProductDto {
 
     private int cost;
 
-    private String categoryName;
+    private Long categoryId;
 }
