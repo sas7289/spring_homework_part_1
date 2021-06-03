@@ -35,3 +35,26 @@ values ('bread', 50, 1),
        ('juice', 100, 1),
        ('cake', 400, 1),
        ('salad', 65, 1);
+
+create table users
+(
+    id serial primary key,
+    username varchar(255) not null ,
+    password varchar(255) not null ,
+    email varchar(255) unique ,
+    unique (username, password)
+);
+
+create table roles
+(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table users_roles
+(
+    user_id bigint not null references users(id),
+    role_id bigint not null references roles(id),
+    primary key (user_id, role_id)
+);
+
