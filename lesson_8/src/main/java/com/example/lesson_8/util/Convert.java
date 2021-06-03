@@ -15,7 +15,7 @@ public class Convert {
     }
 
     public static Product dtoToProduct(ProductDto dto) {
-        Product product = new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(dto.getCategoryId(), null));
+        Product product = new Product(dto.getId(), dto.getTitle(), dto.getCost(), new Category(dto.getCategoryId(), null), null);
         return product;
     }
 

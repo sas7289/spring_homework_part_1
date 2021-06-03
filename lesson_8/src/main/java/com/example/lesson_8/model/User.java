@@ -27,6 +27,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-
+    @ManyToMany
+    @JoinTable(name = "users_products",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "products_id"))
+    private List<Product> products;
 
 }

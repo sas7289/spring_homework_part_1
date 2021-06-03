@@ -58,3 +58,11 @@ create table users_roles
     primary key (user_id, role_id)
 );
 
+create table users_products
+(
+    user_id bigint not null references products(id),
+    product_id bigint not null references products(id),
+    primary key (user_id, product_id)
+);
+
+

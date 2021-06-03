@@ -79,6 +79,13 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     }
 
+    $scope.addToBucket = function (product) {
+        $http.post(contextPath + '/bucket/save', product)
+            .then(function (response) {
+                $scope.fillTable();
+            })
+    }
+
     $scope.fillTable();
 
 });

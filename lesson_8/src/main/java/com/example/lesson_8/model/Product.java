@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -23,4 +24,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     Category category;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn (name = "user_id")
+    )
+    List<User> users;
 }
