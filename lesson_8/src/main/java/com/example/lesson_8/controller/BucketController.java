@@ -23,7 +23,7 @@ public class BucketController {
     @PostMapping("/save")
     public void saveBucket(@RequestBody Product product, Principal principal) {
         if (principal == null) {
-            bucketService.save(product.getId(), 0l);
+            bucketService.save(product.getId(), 1l);
         }
         User user = userService.findByUserName(principal.getName()).orElseThrow(()->
                 new UsernameNotFoundException(String.format("User %s not found", principal.getName())));
