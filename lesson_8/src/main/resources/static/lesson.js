@@ -66,26 +66,38 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.fillTable($scope.ProductsPage.number + 1);
             })
 
-    }
+    };
 
     $scope.selectCategory = function () {
         $http.get(contextPath + '/categories')
-        // $http({
-        //     url: contextPath + '/categories',
-        //     method: 'GET'
-        // })
             .then(function (response) {
                 $scope.Categories = response.data;
             });
+    };
+
+    $scope.addToCart = function (id) {
+        // $http({
+        //         url: contextPath + '/cart',
+        //         method: 'PUT',
+        //         data: {product_id : productId}
+        //     }
+        // )
+        console.log(id);
+        $http.put(contextPath + '/cart', id)
+            .then(function () {
+                $scope.getCart();
+            });
+    };
+
+    $scope.getCart = function () {
+        $http.get(contextPath + '/cart')
+            .then(function (response) {
+                $scope.cart = response.data;
+            });
     }
 
-    $scope.addToBucket = function (product) {
-        $http.post(contextPath + '/bucket/save', product)
-            .then(function (response) {
-                $scope.fillTable();
-            })
-    }
 
     $scope.fillTable();
+    $scope.getCart();
 
 });

@@ -1,6 +1,6 @@
 create table categories
 (
-    id    serial primary key,
+    id   serial primary key,
     name varchar(255)
 );
 
@@ -17,10 +17,10 @@ values ('Продукты'),
 
 create table products
 (
-    id    serial primary key,
-    category_id bigint references categories(id),
-    title varchar(255),
-    cost  int
+    id          serial primary key,
+    category_id bigint references categories (id),
+    title       varchar(255),
+    cost        int
 );
 
 insert into products (title, cost, category_id)
@@ -38,35 +38,50 @@ values ('bread', 50, 1),
 
 create table users
 (
-    id serial primary key,
-    username varchar(255) not null ,
-    password varchar(255) not null ,
-    email varchar(255) unique ,
+    id       serial primary key,
+    username varchar(255) not null,
+    password varchar(255) not null,
+    email    varchar(255) unique,
     unique (username, password)
 );
 
 insert into users
     (username, password, email)
-    values ('test', 'test', 'test');
+values ('test', 'test', 'test');
 
 create table roles
 (
-    id serial primary key,
+    id   serial primary key,
     name varchar(255) not null
 );
 
 create table users_roles
 (
-    user_id bigint not null references users(id),
-    role_id bigint not null references roles(id),
+    user_id bigint not null references users (id),
+    role_id bigint not null references roles (id),
     primary key (user_id, role_id)
 );
 
-create table users_products
+-- create table users_products
+-- (
+--     user_id bigint not null references users(id),
+--     product_id bigint not null references products(id),
+--     primary key (user_id, product_id)
+-- );
+
+create table order_item
 (
-    user_id bigint not null references users(id),
-    product_id bigint not null references products(id),
-    primary key (user_id, product_id)
+    id           serial,
+    title        varchar(255),
+    productId    bigint,
+    productPrice int,
+    quantity     int
 );
+insert into order_item
+    (title, productId, productPrice, quantity)
+values ('bread', 1, 50, 2),
+       ('meet', 2, 460, 1),
+       ('beer', 3, 65, 3);
+
 
 

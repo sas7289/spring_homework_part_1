@@ -32,7 +32,7 @@
                     <button class="btn btn-warning" type="submit" ng-click="deleteProduct(p.id)">Remove</button>
                 </td>
                 <td>
-                    <button class="btn btn-warning" type="submit" ng-click="addToBucket(p)">Добавить в корзину</button>
+                    <button class="btn btn-warning" type="submit" ng-click="addToCart(p.id)">Добавить в корзину</button>
                 </td>
             </div>
         </tr>
@@ -41,13 +41,20 @@
     <nav aria-label="Page-navigation">
         <ul class="pagination">
             <li ng-class="ProductsPage.first ? disablePrev = true : disablePrev = false">
-                <button ng-disabled="disablePrev" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number)">Prev</button>
+                <button ng-disabled="disablePrev" class="btn btn-success" type="submit"
+                        ng-click="fillTable(ProductsPage.number)">Prev
+                </button>
             </li>
-            <li ng-class="ProductsPage.number == pageIndex-1 ? disableCurrent = true : disableCurrent = false" ng-repeat = "pageIndex in PaginationArray">
-                <button ng-disabled="disableCurrent" class="btn btn-success" type="submit" ng-click="fillTable(pageIndex)">{{pageIndex}}</button>
+            <li ng-class="ProductsPage.number == pageIndex-1 ? disableCurrent = true : disableCurrent = false"
+                ng-repeat="pageIndex in PaginationArray">
+                <button ng-disabled="disableCurrent" class="btn btn-success" type="submit"
+                        ng-click="fillTable(pageIndex)">{{pageIndex}}
+                </button>
             </li>
             <li ng-class="ProductsPage.last ? disableNext = true : disableNext = false">
-                <button ng-disabled="disableNext" class="btn btn-success" type="submit" ng-click="fillTable(ProductsPage.number+2)">Next</button>
+                <button ng-disabled="disableNext" class="btn btn-success" type="submit"
+                        ng-click="fillTable(ProductsPage.number+2)">Next
+                </button>
             </li>
         </ul>
     </nav>
@@ -75,14 +82,14 @@
 
     <form novalidate ng-submit="saveProduct()">
         <div class="form-group row">
-        <div class="form-group col-md-3">
-            <label for="title">Название продукта</label>
-            <input class="form-control" type="text" ng-model="newProduct.title" id="title">
-        </div>
-        <div class="form-group col-md-3">
-            <label for="cost">Стоимость продукта</label>
-            <input class="form-control" type="number" ng-model="newProduct.cost" id="cost">
-        </div>
+            <div class="form-group col-md-3">
+                <label for="title">Название продукта</label>
+                <input class="form-control" type="text" ng-model="newProduct.title" id="title">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cost">Стоимость продукта</label>
+                <input class="form-control" type="number" ng-model="newProduct.cost" id="cost">
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label for="selectCategory">Категории</label>
@@ -96,6 +103,24 @@
             <button class="btn btn-success" type="submit">Добавить</button>
         </div>
     </form>
+
+    <h2>Корзина</h2>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td>Наименование продукта</td>
+            <td>Стоимость</td>
+            <td>Количество</td>
+        </tr>
+        </thead>
+        <tr ng-repeat="orderItem in cart.orderItems">
+            <div>
+                <td>{{orderItem.title}}</td>
+                <td>{{orderItem.productPrice}}</td>
+                <td>{{orderItem.quantity}}</td>
+            </div>
+        </tr>
+    </table>
 
 </div>
 
