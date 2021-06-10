@@ -21,7 +21,7 @@ public class User {
 
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -33,4 +33,15 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "products_id"))
     private List<Product> products;
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", email='" + email + '\'' +
+//                ", roles=" + roles +
+//                ", products=" + products +
+//                '}';
+//    }
 }

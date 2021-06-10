@@ -47,13 +47,16 @@ create table users
 
 insert into users
     (username, password, email)
-values ('test', 'test', 'test');
+values ('test', '$2y$10$aip8imAKKBzRConPWdBh2.4F.Y42bhf6LZmNz02llM5JG3ivMrc0u', 'test');
 
 create table roles
 (
     id   serial primary key,
     name varchar(255) not null
 );
+insert into roles
+(name)
+values ('USER');
 
 create table users_roles
 (
@@ -61,6 +64,10 @@ create table users_roles
     role_id bigint not null references roles (id),
     primary key (user_id, role_id)
 );
+
+insert into users_roles
+(user_id, role_id)
+values (1,1);
 
 create table users_products
 (

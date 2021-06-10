@@ -1,8 +1,10 @@
 package com.example.lesson_8.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -13,4 +15,5 @@ public class Role {
     Long id;
 
     private String name;
+
 }
